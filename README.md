@@ -1,7 +1,10 @@
 # Cheers!!
 
 ## サイト概要
-情報共有サイト
+自宅でお酒を嗜むのが好きな方に加えて、コロナ禍で仕方なく自宅でお酒を飲む方が増えたのではないでしょうか。  
+このサイトでは、自分のお気に入りのお酒、お酒のあて、おつまみのレシピ、お酒のレシピなど、自分のこだわりを発信できます。  
+そして飲み方が次第にマンネリ化してきたら、自分の好きなお酒で検索するもよし、飲むシーン別で検索するもよし、いいと思ったユーザーの投稿にはCheers!!ボタンを押して自宅で真似てみよう。  
+Cheers!!でどんどん情報を共有して、素敵な『自宅飲み』にしよう！
 
 ### サイトテーマ
 自宅でお酒を楽しむために有益な情報を共有する
@@ -18,17 +21,7 @@
 * 家で飲んでいて何か物足りなくなった時
 * 家で飲む機会が増えた時
 
-## 設計書
-ER図  
-<https://drive.google.com/file/d/1QSb3LbCnJkbjT9uvE1NrFadHyCCcvo65/view?usp=sharing>  
-テーブル定義書  
-<https://docs.google.com/spreadsheets/d/1pBJ6_BWEyaQMuebGWx0HI0s0CQnfkmbkxNIuG87KfLI/edit#gid=1981379071>  
-アプリケーション詳細設計  
-<https://docs.google.com/spreadsheets/d/1D-Y2B6xDHQi7lbpXANb6bn6rLjTrXtj1e33wsVO5OIw/edit#gid=1913775472>  
-ラフ案  
-<https://drive.google.com/file/d/1HY5tlH-u0BEwftMLCYghlb56hj3EgQbF/view?usp=sharing>  
-
-## チャレンジ要素一覧
+## 機能一覧
 <https://docs.google.com/spreadsheets/d/12MB-pm7gQR8LuecZPGmRnhRQcvaF5Cfro2vh5I4hO6Q/edit#gid=0>
 
 ## 開発環境
@@ -38,6 +31,4 @@ ER図
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+
