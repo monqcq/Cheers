@@ -10,28 +10,23 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_for(:google)
   end
   
-  def failure
-    redirect_to root_path and return
-  end
-  
-  private
-  
   def callback_for(provider)
     # APIから取得したユーザー情報はrequest.env['omniauth.auth']に格納されている
-    @omniauth = request.env['omniauth.auth']
-    # User.find_oauthはモデルで定義
-    info = User.find_oauth(@omniauth)
-    # deviseのヘルパーを使うために@userに代入
-    @user = info[:user]
+    # User.from_omniauthはuserモデルに記述
+    @user = User.from_omniauth(request.env['omniauth.auth'])
     # ユーザー登録済みの処理
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
       set_flash_massege(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
     # ユーザー未登録の処理
     else
-      @sns = info[:sns]
-      render template: "devise/registrations/new"
+      session['devise.#{provider}_data'] = request.env['omniauth.auth'].except('extra')
+      redirect_to new_user_registration_url
     end
+  end
+  
+  def failure
+    redirect_to root_path 
   end
   
 end
