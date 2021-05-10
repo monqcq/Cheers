@@ -13,7 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def callback_for(provider)
     # APIから取得したユーザー情報はrequest.env['omniauth.auth']に格納されている
     # User.from_omniauthはuserモデルに記述
-    @user = User.from_omniauth(request.env['omniauth.auth'])
+    @user = User.from_omniauth(request.env["omniauth.auth"])
     # ユーザー登録済みの処理
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
