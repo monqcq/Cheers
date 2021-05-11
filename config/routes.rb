@@ -7,4 +7,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+  resources :users, only: [:show, :edit, :update] do
+    collection do
+      get 'my_page', to: 'users#my_page'
+    end
+  end
 end
