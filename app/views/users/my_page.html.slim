@@ -1,0 +1,12 @@
+h1 マイページ
+div.container
+  div.row
+    div.col-md-3
+      h2 = @user.name
+      = attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.ong", size: '60x60'
+      table.table
+        tbody
+          tr
+            th 好きなお酒
+            th = @user.favorite_alcohol
+            
