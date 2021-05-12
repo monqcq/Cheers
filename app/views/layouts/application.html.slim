@@ -17,6 +17,7 @@ html
         div.collapse.navbar-collapse#navbarNavDropdown
           ul.navbar-nav.ml-auto
             - if user_signed_in?
+              li = link_to '新規投稿', new_post_path, class: 'btn btn-outline-success'
               li = link_to 'マイページ', my_page_users_path, class: 'btn btn-outline-primary'
               li = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger'
             - else

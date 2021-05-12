@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       get 'my_page', to: 'users#my_page'
     end
   end
+  
+  resources :posts
 end

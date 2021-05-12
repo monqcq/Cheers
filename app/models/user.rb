@@ -14,6 +14,8 @@ class User < ApplicationRecord
     end
   end
   
+  # プロフィール画像をアップロードするための記述
   attachment :profile_image
   
+  has_many :posts, dependent: :destroy
 end
