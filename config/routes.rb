@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :users, only: [:show, :edit, :update] do
+    # 以下、IDを持たせないためcollection
     collection do
       get 'my_page', to: 'users#my_page'
     end
