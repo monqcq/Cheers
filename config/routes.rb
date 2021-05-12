@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'posts/new'
-  get 'posts/show'
-  get 'posts/index'
-  get 'posts/edit'
   root to:'homes#top'
   get 'about', to: 'homes#about'
   devise_for :users,
@@ -17,4 +13,6 @@ Rails.application.routes.draw do
       get 'my_page', to: 'users#my_page'
     end
   end
+  
+  resources :posts
 end
