@@ -7,11 +7,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :edit, :update] do
+    # 以下、IDを持たせないためcollection
     collection do
       get 'my_page', to: 'users#my_page'
-      get 'edit', to: 'users#edit'
-      patch 'my_page', to: 'users#update'
     end
   end
 end
