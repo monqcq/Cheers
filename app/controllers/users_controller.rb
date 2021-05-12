@@ -17,4 +17,9 @@ class UsersController < ApplicationController
     redirect_to my_page_users_path
   end
   
+  private
+  
+  def user_params
+    params.require(:user).permit(:name, :favorite_alcohol, :introduction, :profile_image)
+  end
 end
