@@ -1,2 +1,14 @@
-h1 Users#edit
-p Find me in app/views/users/edit.html.slim
+h1 マイページ編集
+div.container
+  div.row
+    = form_with model:@user, local: true do |f|
+    div.form-group
+      label for= 'user_name' 名前
+      = f.text_field :name, class: 'form-control user_name', id: 'user_name'
+    div.form-group
+      label for= 'user_alcohol' 好きなお酒
+      = f.text_field :favorite_alcohol, class: 'form-control user_alcohol', id: 'user_alcohol'
+    div.form-group
+      label for= 'user_introduction' 自己紹介
+      = f.text_field :introduction, class: 'form-control user_introduction', id: 'user_introduction'
+     
