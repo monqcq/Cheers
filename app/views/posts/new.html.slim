@@ -12,4 +12,4 @@ div.container
         label for= 'post_image' 投稿画像
         = f.attachment_field :image, placeholder: '画像をアップロードする', class: 'form-control-file post_image', id: 'post_image'
       div.form-group
-        f.submit '投稿する', class: 'btn btn-primary'
+        = f.submit '投稿する', class: 'btn btn-primary'
