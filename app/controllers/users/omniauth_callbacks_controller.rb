@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  
   def facebook
     callback_for(:facebook)
   end
-  
+
   def google_oauth2
     callback_for(:google)
   end
-  
+
   def callback_for(provider)
     # APIから取得したユーザー情報はrequest.env['omniauth.auth']に格納されている
     # User.from_omniauthはuserモデルに記述
@@ -24,9 +23,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
-  
+
   def failure
-    redirect_to root_path 
+    redirect_to root_path
   end
-  
 end
