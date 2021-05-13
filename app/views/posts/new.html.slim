@@ -1,13 +1,13 @@
 h1 新規投稿
 div.container
   div.row
-    = form_with model:@post, local:true do |f|
+    = form_with model:@post, local:true do |f| 
       div.form-group
         label for= 'post_title' タイトル
         = f.text_field :title, class: 'form-control post_title', id: 'post_title'
       div.form-group
         label for= 'post_text' 本文
-        = f.text_area :text, class: 'form-control post_text', id: 'post_text'
+        = f.text_area :text, class: 'form-control post_text', id: 'post_text', size:'200x10'
       div.form-group
         label for= 'post_image' 投稿画像
         = f.attachment_field :image, placeholder: '画像をアップロードする', class: 'form-control-file post_image', id: 'post_image'
