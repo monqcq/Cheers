@@ -16,10 +16,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # ユーザー登録済みの処理
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
-      set_flash_massege(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
+      set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
     # ユーザー未登録の処理
     else
-      session['devise.#{provider}_data'] = request.env['omniauth.auth'].except('extra')
+      session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
       redirect_to new_user_registration_url
     end
   end
