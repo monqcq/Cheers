@@ -13,6 +13,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @like = Like.new
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def index

@@ -15,3 +15,23 @@ div.container
           i.fas.fa-glass-cheers = @post.liked_users.count
       = link_to '編集する', edit_post_path(@post), class: 'btn btn-success'
       = link_to '削除', post_path(@post), method: :delete, class: 'btn btn-danger', data: {confirm: '本当に削除しますか？'}
+      
+      /コメント一覧
+      h2.border-bottom コメント一覧
+      - @comments.each do |c|
+        div.row.border-bottom.mb-2
+          div.col-1.d-flex.justify-content-end = attachment_image_tag c.user, :profile_image, :fill, 30, 30, fallback: 'no_image.png', size: '30x30'
+          div.col-9
+            p.font-weight-bold = c.user.name
+          div.col-2
+            p = c.created_at.strftime("%Y-%m-%d %H:%M")
+          div.col.offset-1
+            p = safe_join(c.content.split("\n"), tag(:br))
+            
+      /コメントフォーム      
+      div.form-group
+        = form_with model:[@post, @comment] do |f|
+          = f.text_area :content, class:'form-control', placeholder: 'コメントをここに'
+          = f.hidden_field :post_id, value: @post.id
+          = f.submit '送信する'
+
