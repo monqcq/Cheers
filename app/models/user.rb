@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          # OmniAuthを使うためのオプション
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
-
+  
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.name
@@ -18,4 +18,13 @@ class User < ApplicationRecord
   attachment :profile_image
 
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  # いいねしている投稿を取得するアソシエーション
+  has_many :liked_posts, through: :likes, source: :post
+  
+  # ユーザーがすでにいいねをしているか判断するメソッド
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+  end
+  
 end
