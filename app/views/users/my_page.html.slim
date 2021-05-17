@@ -10,4 +10,5 @@ div.container
             th 好きなお酒
             th = @user.favorite_alcohol
       div.row
+        = link_to '下書き一覧', draft_posts_path
         = link_to 'マイページ編集', edit_user_path(@user), class: 'btn btn-outline-secondary btn-block user_edit'

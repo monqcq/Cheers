@@ -41,6 +41,11 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to posts_path
   end
+  
+  def draft
+    @user = current_user
+    @posts = Post.draft.order("created_at DESC")
+  end
 
   private
 
