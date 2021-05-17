@@ -76,3 +76,7 @@ gem 'pry-rails'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'rubocop-airbnb'
+
+group :production do
+  gem 'mysql2'
+end
