@@ -76,6 +76,7 @@ gem 'pry-rails'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'rubocop-airbnb'
+gem 'rails-i18n'
 gem 'enum_help'
 
 group :production do

@@ -12,4 +12,6 @@ div.container
         label for= 'post_image' 投稿画像を変更する
         = f.attachment_field :image, placeholder: '画像をアップロードする', class: 'form-control-file post_image', id: 'post_image'
       div.form-group
+        = f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, class:'form-control'
+      div.form-group
         = f.submit '編集する', class: 'btn btn-primary'

@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.published.order("created_at DESC").page(params[:page]).per(12)
   end
 
   def edit
