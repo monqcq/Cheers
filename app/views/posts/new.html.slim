@@ -1,7 +1,7 @@
 h1 新規投稿
 div.container
   div.row
-    = form_with model:@post, local:true do |f| 
+    = form_with model:@post, local:true do |f|
       div.form-group
         label for= 'post_title' タイトル
         = f.text_field :title, class: 'form-control post_title', id: 'post_title'
@@ -11,5 +11,7 @@ div.container
       div.form-group
         label for= 'post_image' 投稿画像
         = f.attachment_field :image, placeholder: '画像をアップロードする', class: 'form-control-file post_image', id: 'post_image'
+      div.form-group
+        = f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, class:'form-control'
       div.form-group
         = f.submit '投稿する', class: 'btn btn-primary'

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
+    collection do
+      get 'draft'
+  end
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end

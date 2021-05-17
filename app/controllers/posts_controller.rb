@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.published.order("created_at DESC").page(params[:page]).per(12)
   end
 
   def edit
@@ -41,10 +41,15 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to posts_path
   end
+  
+  def draft
+    @user = current_user
+    @posts = Post.draft.order("created_at DESC")
+  end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :text, :image)
+    params.require(:post).permit(:title, :text, :image, :status)
   end
 end
