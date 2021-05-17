@@ -1,3 +1,21 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'homes#top'
+  get 'about', to: 'homes#about'
+  devise_for :users,
+             controllers: {
+               sessions: 'users/sessions',
+               registrations: 'users/registrations',
+               omniauth_callbacks: 'users/omniauth_callbacks'
+             }
+  resources :users, only: [:show, :edit, :update] do
+    # 以下、IDを持たせないためcollection
+    collection do
+      get 'my_page', to: 'users#my_page'
+    end
+  end
+
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+  end
 end
