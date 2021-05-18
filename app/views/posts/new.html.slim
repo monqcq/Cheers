@@ -15,6 +15,9 @@ div.container
         div.form-group.col-2
           = f.label :category_id, 'カテゴリー'
           = f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control'
+        div.form-group.col-2
+          = f.label :scene_id, 'シーン'
+          = f.collection_select :scene_id, Scene.all, :id, :name, { prompt: '選択してください' }, class: 'form-control'
       div.form-group
         = f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, class:'form-control'
       div.form-group
