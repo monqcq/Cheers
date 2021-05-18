@@ -1,7 +1,7 @@
 h1 投稿一覧
 div.container
   div.row.row-cols-1.row-cols-md-3.g-4
-    - @posts.each do |post|
+    - @search_posts.each do |post|
       = link_to post_path(post) do
         div.col.mb-4
           div.card.h-100.border-secondary
