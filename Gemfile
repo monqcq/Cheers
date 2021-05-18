@@ -78,6 +78,7 @@ gem 'html2slim'
 gem 'rubocop-airbnb'
 gem 'rails-i18n'
 gem 'enum_help'
+gem 'ransack'
 
 group :production do
   gem 'mysql2'
