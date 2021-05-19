@@ -1,4 +1,10 @@
 h1 投稿一覧
+/パラメーターでcategory_idが渡ってきたらそのカテゴリーの名前を表示
+- if params[:category_id]
+  p ジャンル： 【#{ @categories.find(params[:category_id]).name }】
+/パラメーターでscene_idが渡ってきたらそのシーンの名前を表示
+- elsif params[:scene_id]
+  p シーン：　【#{ @scenes.find(params[:scene_id]).name }】
 div.container
   div.row
     div.col-10
@@ -15,9 +21,11 @@ div.container
       h5.mt-2 ジャンル別で探す
       - @categories.each do |category|
         p
+          /パラメーターでcategory_idを渡す
           = link_to category.name, posts_path(category_id: category)
       h5.mt-2 シーン別で探す
       - @scenes.each do |scene|
         p
+          /パラメーターでscene_idを渡す
           = link_to scene.name, posts_path(scene_id: scene)
 
