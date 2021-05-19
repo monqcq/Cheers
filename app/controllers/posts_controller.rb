@@ -18,10 +18,16 @@ class PostsController < ApplicationController
   end
 
   def index
+    # パラメーターにcategory_idが渡ってきたらそのIDで投稿を取得
     if params[:category_id]
       @search_posts = Post.where(category_id: params[:category_id]).published
+    # パラメーターにscene_idが渡ってきたらそのIDで投稿を取得
+    elsif params[:scene_id]
+      @search_posts = Post.where(scene_id: params[:scene_id]).published
     end
+    
     @categories = Category.all
+    @scenes = Scene.all
   end
 
   def edit
