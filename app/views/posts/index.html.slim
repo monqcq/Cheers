@@ -16,4 +16,8 @@ div.container
       - @categories.each do |category|
         p
           = link_to category.name, posts_path(category_id: category)
+      h5.mt-2 シーン別で探す
+      - @scenes.each do |scene|
+        p
+          = link_to scene.name, posts_path(scene_id: scene)
 

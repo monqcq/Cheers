@@ -20,8 +20,11 @@ class PostsController < ApplicationController
   def index
     if params[:category_id]
       @search_posts = Post.where(category_id: params[:category_id]).published
+    elsif params[:scene_id]
+      @search_posts = Post.where(scene_id: params[:scene_id]).published
     end
     @categories = Category.all
+    @scenes = Scene.all
   end
 
   def edit
