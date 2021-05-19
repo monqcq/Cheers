@@ -18,7 +18,10 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.published.order("created_at DESC").page(params[:page]).per(12)
+    if params[:category_id]
+      @search_posts = Post.where(category_id: params[:category_id]).published
+    end
+    @categories = Category.all
   end
 
   def edit
