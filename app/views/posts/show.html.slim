@@ -8,16 +8,11 @@ div.container
       = attachment_image_tag @post, :image, fallback: 'no_image_post.png', class: 'card-img-top', size: '600x600'
       /改行を反映させるためのヘルパーメソッド
       p.h5.mt-4 = safe_join(@post.text.split("\n"), tag(:br))
-      /ユーザーがいいねをしているかを判断
-      - if current_user.already_liked?(@post)
-        = link_to post_like_path(@post), method: :delete, class:'text-warning' do
-          i.fas.fa-glass-cheers = @post.liked_users.count
-      - else
-        = link_to post_likes_path(@post), method: :post, class: 'text-muted' do
-          i.fas.fa-glass-cheers = @post.liked_users.count
+      div id='likes_buttons_#{@post.id}'
+        = render 'likes/like', post: @post
       = link_to '編集する', edit_post_path(@post), class: 'btn btn-success'
       = link_to '削除', post_path(@post), method: :delete, class: 'btn btn-danger', data: {confirm: '本当に削除しますか？'}
-      
+
       /コメント一覧
       h2.border-bottom コメント一覧
       - @comments.each do |c|
@@ -29,8 +24,8 @@ div.container
             p = c.created_at.strftime("%Y-%m-%d %H:%M")
           div.col.offset-1
             p = safe_join(c.content.split("\n"), tag(:br))
-            
-      /コメントフォーム      
+
+      /コメントフォーム
       div.form-group
         = form_with model:[@post, @comment] do |f|
           = f.text_area :content, class:'form-control', placeholder: 'コメントをここに'

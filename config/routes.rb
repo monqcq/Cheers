@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     collection do
       get 'draft'
   end
-    resources :likes, only: [:create, :destroy]
+    resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
 end
