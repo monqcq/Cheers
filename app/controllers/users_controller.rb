@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     if @user == current_user
       redirect_to my_page_users_path
     end
+    @posts = Post.where(user_id: params[:id])
   end
 
   def my_page
