@@ -25,9 +25,12 @@ class PostsController < ApplicationController
     elsif params[:scene_id]
       @search_posts = Post.where(scene_id: params[:scene_id]).published
     end
-    
+
     @categories = Category.all
     @scenes = Scene.all
+
+    @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    # binding.pry
   end
 
   def edit
