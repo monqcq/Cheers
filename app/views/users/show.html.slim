@@ -2,32 +2,32 @@ h1 ユーザー詳細
 div.container
   div.row
     div.col-md-3.bg-white.rounded-lg
-      = attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", size: '60x60', class:'rounded-circle d-block mx-auto mb-2'
-      p.h6.text-center = @user.name
+      = attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", size: '60x60', class:'rounded-circle d-block mx-auto mb-2 mt-5'
+      p.h6.text-center.mb-5 = @user.name
       div.row.border-bottom.mb-2.d-flex.justify-content-center
         h6.col-5.text-center.font-weight-bold 好きなお酒
         p.h6.col-5.text-center = @user.favorite_alcohol
-      div.row.d-flex.justify-content-center
+      div.row.d-flex.justify-content-center.mb-2
         h6.col-5.text-center.font-weight-bold 自己紹介
         h6.col-5
-      div.row.row.border-bottom.mb-2
+      div.row.row.border-bottom.mb-3
         p.introduction.col-10.mx-auto = safe_join(@user.introduction.split("\n"), tag(:br))
-        
+
     div.col-md-8.offset-md-1
-      h2 投稿一覧
+      h2 #{ @user.name }の投稿一覧
       table.table.table-hover.table-invers.bg-white
         thead
           tr
             th
             th Title
             th Opinion
-            
+
         tbody
           - @posts.each do |post|
             tr
               td
                 = attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "no_image.png", size: '30x30', class:'rounded-circle'
               td
-                = link_to post.title, edit_post_path(post)
+                = link_to post.title, post_path(post)
               td
                 = truncate(post.text, length:30)
