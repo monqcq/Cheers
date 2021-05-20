@@ -1,2 +1,14 @@
 h1 ユーザー詳細
-
+div.container
+  div.row
+    div.col-md-3.bg-white
+      h2 = @user.name
+      = attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", size: '60x60'
+      table.table
+        tbody
+          tr
+            th 好きなお酒
+            th = @user.favorite_alcohol
+          tr
+            th 自己紹介
+            th = @user.introduction      
