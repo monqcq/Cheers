@@ -13,19 +13,19 @@ div.container
           = link_to post_path(post) do
             div.col.mb-4
               div.card.h-100.border-secondary
-                = attachment_image_tag post, :image, fallback: 'no_image_post.png', class: 'card-img-top', size: '300x225'
+                = attachment_image_tag post, :image, fallback: 'no_image_post.png', class: 'card-img-top p-2', size: '300x225'
                 div.card-body
                   h5.card-title = post.title
                   p.card-text = truncate(post.text, length:30)
-    div.col-2.bg-white.rounded-lg
-      h5.mt-2 ジャンル別で探す
+    div.col-2.rounded-lg
+      h5.mt-2.bg-white.rounded ジャンル別で探す
       - @categories.each do |category|
         p
           /パラメーターでcategory_idを渡す
-          = link_to category.name, posts_path(category_id: category)
-      h5.mt-2 シーン別で探す
+          = link_to category.name, posts_path(category_id: category), class:'text-secondary'
+      h5.mt-2.bg-white.rounded.text-center シーン別で探す
       - @scenes.each do |scene|
         p
           /パラメーターでscene_idを渡す
-          = link_to scene.name, posts_path(scene_id: scene)
+          = link_to scene.name, posts_path(scene_id: scene), class:'text-secondary'
 
