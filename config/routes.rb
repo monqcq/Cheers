@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     # 以下、IDを持たせないためcollection
     collection do
-      get 'my_page', to: 'users#my_page'
+      get 'my_page'
+      get 'likes'
     end
   end
 
