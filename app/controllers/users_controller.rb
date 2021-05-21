@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   def my_page
     @user = current_user
   end
+  
+  def likes
+    @user = current_user
+  end
 
   def edit
     @user = current_user
