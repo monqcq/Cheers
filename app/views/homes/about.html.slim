@@ -1,1 +1,29 @@
-h1 ABOUTページ
+.container
+  .row.bg-white.mb-5
+    .col-6.about_main
+    .col-6.d-flex.align-items-center.justify-content-center
+      p.h1.text-center ABOUT
+      
+  .row.d-flex.justify-content-center.align-items-center
+    .col-9
+      p.h3 
+        span.under 自分の家で飲むお気に入りのお酒やおつまみ、何をしながら飲んでいるのかを発信しよう！
+    .col-3.bg-white.rounded-circle.about_number.caption1
+    
+  .row.d-flex.justify-content-center.align-items-center
+    .col-3.bg-white.rounded-circle.about_number.caption2
+    .col-9
+      p.h3
+        span.under
+          | ジャンル別やシーン別、キーワードから検索して、いいね！と思った投稿には
+          i.fas.fa-glass-cheers.
+          | ボタンを押そう！
+
+  .row.d-flex.justify-content-center.align-items-center
+    .col-9
+      p.h3 
+        span.under お気に入りの投稿を真似して、マンネリ化した家飲みを楽しく乾杯！！
+    .col-3.bg-white.rounded-circle.about_number.caption3
+  .row
+    .col-4.mx-auto
+      = link_to '今すぐ始める', new_user_registration_path, class: 'btn btn-primary d-block mx-auto'

@@ -52,3 +52,36 @@ footer{
  left: 140px;
  font-size: 80px;
 }
+
+.about_main{
+ height: 600px;
+ background-image: url(main2.jpg);
+ background-size: cover;
+ background-position: center;
+}
+
+.about_number{
+ height: 300px;
+}
+
+.under{
+ background: linear-gradient(transparent 50%, #ffffaa 80%);
+}
+
+.caption1{
+ background-image: url(pc.png);
+ background-size: cover;
+ background-position: center;
+}
+
+.caption2{
+ background-image: url(click.png);
+ background-size: 100% 90%;
+ background-position: center;
+}
+
+.caption3{
+ background-image: url(ienomi.png);
+ background-size: cover;
+ background-position: center;
+}
