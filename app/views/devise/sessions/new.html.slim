@@ -4,13 +4,13 @@
       p.font-weight-bolder.font-italic Cheers!!
     .card.card-container.
       = form_with model: @user, url: user_session_path, local: true do |f|
-        = f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control mb-2', placeholder:'Email address'
-        = f.password_field :password, autocomplete: "current-password", class:'form-control', placeholder:'Password'
+        = f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control mb-2', placeholder:'メールアドレス'
+        = f.password_field :password, autocomplete: "current-password", class:'form-control', placeholder:'パスワード'
         .field
           = f.check_box :remember_me
           = f.label :remember_me
         .actions
           = f.submit "ログイン", class:'btn btn-lg btn-primary btn-block mb-2'
-      p.text-center or
+      p.text-center または
       = link_to 'Googleでログイン', '/users/auth/google_oauth2', class:'btn btn-outline-danger mb-2', method: :post
       = link_to 'Facebookでログイン', '/users/auth/facebook', class: 'btn btn-outline-primary', method: :post
