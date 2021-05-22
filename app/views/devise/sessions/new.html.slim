@@ -1,18 +1,16 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.container
+  .row.bg-white.rounded-3
+    .col-6.image_container
+      p.font-weight-bolder.font-italic Cheers!!
+    .card.card-container.
+      = form_with model: @user, url: user_session_path, local: true do |f|
+        = f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control mb-2', placeholder:'Email address'
+        = f.password_field :password, autocomplete: "current-password", class:'form-control', placeholder:'Password'
+        .field
+          = f.check_box :remember_me
+          = f.label :remember_me
+        .actions
+          = f.submit "ログイン", class:'btn btn-lg btn-primary btn-block mb-2'
+      p.text-center or
+      = link_to 'Googleでログイン', '/users/auth/google_oauth2', class:'btn btn-outline-danger mb-2', method: :post
+      = link_to 'Facebookでログイン', '/users/auth/facebook', class: 'btn btn-outline-primary', method: :post

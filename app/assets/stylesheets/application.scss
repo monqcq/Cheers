@@ -20,7 +20,7 @@
  }
 
 .navbar-nav li{
- margin-left: 40px;
+  margin-left: 40px;
 }
 
 footer{
@@ -28,6 +28,26 @@ footer{
 }
 
 .introduction{
- font-size: 12px;
+  font-size: 12px;
 }
 
+.card-container{
+  max-width: 350px;
+  padding: 40px 40px;
+  background-color: #F7F7F7;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+}
+
+.image_container{
+ position: relative;
+ background-image: url(main.jpg);
+ background-size: cover;
+}
+
+.image_container p{
+ position: absolute;
+ top: 10px;
+ left: 140px;
+ font-size: 80px;
+}
