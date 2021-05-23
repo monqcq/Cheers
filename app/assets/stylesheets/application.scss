@@ -42,7 +42,7 @@ footer{
 .image_container{
  height: 460px;
  position: relative;
- background-image: url(main.jpg);
+ background-image: image-url("main.jpg");
  background-size: cover;
 }
 
@@ -55,7 +55,7 @@ footer{
 
 .about_main{
  height: 600px;
- background-image: url(main2.jpg);
+ background-image: image-url("main2.jpg");
  background-size: cover;
  background-position: center;
 }
@@ -69,19 +69,19 @@ footer{
 }
 
 .caption1{
- background-image: url(pc.png);
+ background-image: image-url("pc.png");
  background-size: cover;
  background-position: center;
 }
 
 .caption2{
- background-image: url(click.png);
+ background-image: image-url("click.png");
  background-size: 100% 90%;
  background-position: center;
 }
 
 .caption3{
- background-image: url(ienomi.png);
+ background-image: image-url("ienomi.png");
  background-size: cover;
  background-position: center;
 }
