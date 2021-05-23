@@ -10,16 +10,21 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-  header.mb-3
+  header.mb-5
     nav.navbar.navbar-expand-lg.navbar-dark.bg-white
       div.container
         = link_to image_tag('logo.png'), '/'
         button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'
           span.navbar-toggler-icon
         div.collapse.navbar-collapse#navbarNavDropdown
+          = search_form_for @search, class:'form-inline ml-4', url: posts_path do |f|
+            div.form-group
+              = f.text_field :title_or_text_cont, placeholder: 'キーワード検索', class: 'form-control'
+            div.form-group
+              = f.submit '検索', class: 'btn btn-primary'
           ul.navbar-nav.ml-auto
             - if user_signed_in?
-              li = link_to '投稿一覧', posts_path, class: 'btn btn-outline-secondary' 
+              li = link_to '投稿一覧', posts_path, class: 'btn btn-outline-secondary'
               li = link_to '新規投稿', new_post_path, class: 'btn btn-outline-success'
               li = link_to 'マイページ', my_page_users_path, class: 'btn btn-outline-primary'
               li = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger'
@@ -27,6 +32,6 @@ html
               li = link_to 'About', about_path,class: 'btn btn-outline-secondary'
               li = link_to '新規登録', new_user_registration_path, class: 'btn btn-outline-primary'
               li = link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-success'
-    = yield
-  footer
+  = yield
+  footer.footer
     p.text-center.text-white.py-5.mt-5 © All rights reserved by project-cheers!!

@@ -1,28 +1,21 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :name
-    br
-    = f.text_field :name, autofocus: true
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.container
+  .row
+    .col-6.mx-auto.bg-white.p-5
+      h3.text-center 新規登録
+      = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| 
+        = render "devise/shared/error_messages", resource: resource
+        .form-group
+          = f.text_field :name, class:"form-control", autofocus: true, placeholder:'ニックネーム'
+        .form-group
+          = f.text_field :email, class:"form-control", autofocus:true, autocomplete: true, placeholder:'メールアドレス'
+        .form-group
+          = f.password_field :password, class:"form-control", autocomplete: "new-password", placeholder:'パスワード(6文字以上)'
+        .form-group
+          = f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password", placeholder:'パスワード(確認)'
+        = f.submit "新規登録", class:"btn btn-success d-block mx-auto mb-2" 
+        p.text-center または
+        .row.d-flex.justify-content-around.mb-3
+          = link_to 'Googleでログイン', '/users/auth/google_oauth2', class:'btn btn-outline-danger', method: :post
+          = link_to 'Facebookでログイン', '/users/auth/facebook', class: 'btn btn-outline-primary', method: :post
+        p.text-center 登録済みの方は#{ link_to "こちら", new_user_session_path }からログインしてください。
+  

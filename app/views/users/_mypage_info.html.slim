@@ -1,0 +1,18 @@
+div.col-md-3.bg-white.rounded-lg
+  = attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.png", size: '60x60', class:'rounded-circle d-block mx-auto mb-2 mt-5'
+  p.h6.text-center.mb-5 = user.name
+  div.row.border-bottom.mb-2.d-flex.justify-content-center
+    h6.col-5.text-center.font-weight-bold 好きなお酒
+    p.h6.col-5.text-center = user.favorite_alcohol
+  div.row.d-flex.justify-content-center.mb-2
+    h6.col-5.text-center.font-weight-bold 自己紹介
+    h6.col-5
+  div.row.row.border-bottom.mb-3
+    p.introduction.col-10.mx-auto = safe_join(user.introduction.split("\n"), tag(:br))
+
+  div.row.mb-3
+    = link_to '下書き一覧', draft_posts_path, class:'mx-auto'
+  div.row.mb-3
+    = link_to 'いいね一覧', likes_users_path, class:'mx-auto'
+  div.row.mb-5.mx-2
+    = link_to 'マイページ編集', edit_user_path(user), class: 'btn btn-outline-secondary btn-block user_edit'

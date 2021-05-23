@@ -1,9 +1,17 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    if @user == current_user
+      redirect_to my_page_users_path
+    end
+    @posts = Post.where(user_id: params[:id])
   end
 
   def my_page
+    @user = current_user
+  end
+  
+  def likes
     @user = current_user
   end
 

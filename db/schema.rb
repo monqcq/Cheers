@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_063917) do
+ActiveRecord::Schema.define(version: 2021_05_20_084738) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -38,16 +44,16 @@ ActiveRecord::Schema.define(version: 2021_05_16_063917) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "category_id"
+    t.integer "scene_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "sns_credentials", force: :cascade do |t|
-    t.string "provider", null: false
-    t.string "uid", null: false
-    t.integer "user_id", null: false
+  create_table "scenes", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_063917) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
-    t.text "introduction"
+    t.string "introduction", default: "よろしくお願いします"
     t.string "profile_image_id"
     t.string "favorite_alcohol"
     t.datetime "created_at", null: false

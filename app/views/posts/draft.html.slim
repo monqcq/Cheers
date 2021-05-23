@@ -1,0 +1,21 @@
+div.container
+  div.row
+    = render 'users/mypage_info', user: @user
+
+    div.col-md-8.offset-md-1
+      h2 下書き一覧
+      table.table.table-hover.table-invers.bg-white
+        thead
+          tr
+            th
+            th Title
+            th Opinion
+        tbody
+          - @posts.each do |post|
+            tr
+              td
+                = attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "no_image.png", size: '30x30', class:'rounded-circle'
+              td
+                = link_to post.title, edit_post_path(post)
+              td
+                = truncate(post.text, length:30)

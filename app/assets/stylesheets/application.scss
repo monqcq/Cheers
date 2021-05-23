@@ -20,10 +20,68 @@
  }
 
 .navbar-nav li{
- margin-left: 40px;
+  margin-left: 40px;
 }
 
 footer{
  background-color: #f4a261;
 }
 
+.introduction{
+  font-size: 12px;
+}
+
+.card-container{
+  max-width: 350px;
+  padding: 40px 40px;
+  background-color: #F7F7F7;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+}
+
+.image_container{
+ height: 460px;
+ position: relative;
+ background-image: url(main.jpg);
+ background-size: cover;
+}
+
+.image_container p{
+ position: absolute;
+ top: 10px;
+ left: 140px;
+ font-size: 80px;
+}
+
+.about_main{
+ height: 600px;
+ background-image: url(main2.jpg);
+ background-size: cover;
+ background-position: center;
+}
+
+.about_number{
+ height: 300px;
+}
+
+.under{
+ background: linear-gradient(transparent 50%, #ffffaa 80%);
+}
+
+.caption1{
+ background-image: url(pc.png);
+ background-size: cover;
+ background-position: center;
+}
+
+.caption2{
+ background-image: url(click.png);
+ background-size: 100% 90%;
+ background-position: center;
+}
+
+.caption3{
+ background-image: url(ienomi.png);
+ background-size: cover;
+ background-position: center;
+}

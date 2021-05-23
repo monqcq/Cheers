@@ -18,7 +18,19 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    # パラメーターにcategory_idが渡ってきたらそのIDで投稿を取得
+    if params[:category_id]
+      @search_posts = Post.where(category_id: params[:category_id]).published
+    # パラメーターにscene_idが渡ってきたらそのIDで投稿を取得
+    elsif params[:scene_id]
+      @search_posts = Post.where(scene_id: params[:scene_id]).published
+    end
+
+    @categories = Category.all
+    @scenes = Scene.all
+
+    @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    # binding.pry
   end
 
   def edit
@@ -29,22 +41,27 @@ class PostsController < ApplicationController
       redirect_to posts_path
     end
   end
-  
+
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
     redirect_to post_path(@post)
   end
-  
+
   def destroy
     post = Post.find(params[:id])
     post.destroy
     redirect_to posts_path
   end
 
+  def draft
+    @user = current_user
+    @posts = Post.draft.order("created_at DESC")
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :text, :image)
+    params.require(:post).permit(:title, :text, :image, :status, :category_id, :scene_id)
   end
 end
