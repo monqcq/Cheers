@@ -11,8 +11,8 @@ div.col-md-3.bg-white.rounded-lg
     p.introduction.col-10.mx-auto = safe_join(user.introduction.split("\n"), tag(:br))
 
   div.row.mb-3
-    = link_to '下書き一覧', draft_posts_path, class:'mx-auto'
+    = link_to '下書き中の投稿', draft_posts_path, class:'col-10 mx-auto btn btn-outline-primary'
   div.row.mb-3
-    = link_to 'いいね一覧', likes_users_path, class:'mx-auto'
-  div.row.mb-5.mx-2
-    = link_to 'マイページ編集', edit_user_path(user), class: 'btn btn-outline-secondary btn-block user_edit'
+    = link_to 'Cheers!!', likes_users_path, class:'col-10 mx-auto btn btn-outline-warning'
+  div.row.mb-5
+    = link_to 'マイページ編集', edit_user_path(user), class: 'col-10 mx-auto btn btn-outline-secondary'
