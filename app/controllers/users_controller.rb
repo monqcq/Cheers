@@ -9,8 +9,9 @@ class UsersController < ApplicationController
 
   def my_page
     @user = current_user
+    @posts = @user.posts.published.all
   end
-  
+
   def likes
     @user = current_user
   end
