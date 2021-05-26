@@ -17,20 +17,20 @@ div.container
                 div.card-body
                   h5.card-title = post.title
                   p.card-text = truncate(post.text, length:30)
-                  
+
     div.col-3.rounded-lg
       h5.mt-2.bg-white.rounded.text-center ジャンル別で探す
       - @categories.each do |category|
         p
           /パラメーターでcategory_idを渡す
           = link_to category.name, posts_path(category_id: category), class:'text-secondary'
-          
+
       h5.mt-2.bg-white.rounded.text-center シーン別で探す
       - @scenes.each do |scene|
         p
           /パラメーターでscene_idを渡す
           = link_to scene.name, posts_path(scene_id: scene), class:'text-secondary'
-          
+
       h5.mt-2.bg-white.rounded.text-center ランキング
       - @all_ranks.each.with_index(1) do |rank, i|
         .row.d-flex.justify-content-center
