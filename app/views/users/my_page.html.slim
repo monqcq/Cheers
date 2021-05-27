@@ -14,3 +14,4 @@ div.container
                 div.card-body
                   h5.card-title = post.title
                   p.card-text = truncate(post.text, length:30)
+      = paginate @posts

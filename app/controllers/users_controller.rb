@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def my_page
     @user = current_user
-    @posts = @user.posts.published.all
+    @posts = @user.posts.published.all.page(params[:page]).per(6)
   end
 
   def likes
