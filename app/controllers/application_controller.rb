@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   
   def set_search
     @search = Post.ransack(params[:q])
-    @search_posts = @search.result.published
+    @search_posts = @search.result.published.page(params[:page]).per(9)
   end
 
   def configure_permitted_parameters
