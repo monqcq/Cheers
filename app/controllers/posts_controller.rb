@@ -7,7 +7,12 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to posts_path
+    if @post.status == "draft"
+      redirect_to draft_posts_path
+    else
+      # binding.pry
+      redirect_to posts_path  
+    end
   end
 
   def show

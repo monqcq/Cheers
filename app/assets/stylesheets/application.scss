@@ -19,6 +19,11 @@
    background-color: #ffd60a ;
  }
 
+ a{
+  text-decoration: none;
+  color: black;
+ }
+
 .navbar-nav li{
   margin-left: 40px;
 }
@@ -84,4 +89,8 @@ footer{
  background-image: image-url("ienomi.png");
  background-size: cover;
  background-position: center;
+}
+
+.card-subtitle{
+ font-size: 10px;
 }
