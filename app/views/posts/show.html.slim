@@ -27,15 +27,22 @@ div.container
 
       /コメント一覧
       h5.border-bottom コメント
-      - @comments.each do |c|
-        div.row.border-bottom.mb-2
-          div.col-1.d-flex.justify-content-end = attachment_image_tag c.user, :profile_image, :fill, 30, 30, fallback: 'no_image.png', size: '30x30'
-          div.col-9
-            p.font-weight-bold = c.user.name
-          div.col-2
-            p = c.created_at.strftime("%Y-%m-%d %H:%M")
-          div.col.offset-1
-            p = safe_join(c.content.split("\n"), tag(:br))
+      - if @comments.present?
+        - @comments.each do |c|
+          div.row.border-bottom.mb-2
+            div.col-1.d-flex.justify-content-end = attachment_image_tag c.user, :profile_image, :fill, 30, 30, fallback: 'no_image.png', size: '30x30'
+            div.col-9
+              p.font-weight-bold = c.user.name
+            div.col-2
+              p = c.created_at.strftime("%Y-%m-%d %H:%M")
+            div.col.offset-1
+              p = safe_join(c.content.split("\n"), tag(:br))
+            - if c.user == current_user
+              div.col-1
+                = link_to post_comment_path(c.post, c), method: :delete do
+                  i.fas.fa-trash-alt
+      - else
+        p この投稿にコメントはありません。
 
       /コメントフォーム
       = form_with model:[@post, @comment] do |f|
