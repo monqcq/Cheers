@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     # 以下、IDを持たせないためcollection
     collection do
       get 'my_page'
+    end
+    
+    member do 
       get 'likes'
     end
   end
