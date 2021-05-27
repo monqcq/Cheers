@@ -7,7 +7,7 @@ div.container
           = f.text_field :name, class: 'form-control user_name', id: 'user_name'
         div.form-group
           label for= 'user_alcohol' 好きなお酒
-          = f.text_field :favorite_alcohol, class: 'form-control user_alcohol', id: 'user_alcohol'
+          = f.text_field :favorite_alcohol, class: 'form-control user_alcohol', placeholder: '好きなお酒を入力しよう!', id: 'user_alcohol'
         div.form-group
           label for= 'user_introduction' 自己紹介
           = f.text_area :introduction, class: 'form-control user_introduction', id: 'user_introduction'
