@@ -17,15 +17,19 @@ div.container
                 div.card-body
                   h5.card-title = post.title
                   h6.card-subtitle.mb-2.text-muted.d-flex.justify-content-between
-                    p.mb-0 
+                    p.mb-0
                       = attachment_image_tag post.user, :profile_image, :fill, 15, 15, fallback: "no_image.png", size: '15x15', class:'rounded-circle'
                       = post.user.name
                     p.mb-0 = post.created_at.strftime("%Y-%m-%d %H:%M")
                   p.card-text = truncate(post.text, length:30)
                   div.icon-box.d-flex.justify-content-end
-                    span
-                      i.fas.fa-glass-cheers = post.liked_users.count
-                    span.ml-2 
+                    - if current_user.already_liked?(post)
+                      span
+                        i.fas.fa-glass-cheers.text-warning = post.liked_users.count
+                    - else
+                      span
+                        i.fas.fa-glass-cheers = post.liked_users.count
+                    span.ml-2
                       i.far.fa-comment-dots = post.comments.count
       = paginate @search_posts
 
