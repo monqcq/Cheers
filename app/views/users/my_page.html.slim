@@ -1,4 +1,4 @@
-h1 マイページ
+
 div.container
   div.row
     = render 'mypage_info', user: @user
@@ -13,5 +13,15 @@ div.container
                 = attachment_image_tag post, :image, fallback: 'no_image_post.png', class: 'card-img-top p-2', size: '300x225'
                 div.card-body
                   h5.card-title = post.title
+                  h6.card-subtitle.mb-2.text-muted.d-flex.justify-content-between
+                    p 
+                      = attachment_image_tag post.user, :profile_image, :fill, 15, 15, fallback: "no_image.png", size: '15x15', class:'rounded-circle'
+                      = post.user.name
+                    p = post.created_at.strftime("%Y-%m-%d %H:%M")
                   p.card-text = truncate(post.text, length:30)
+                  div.icon-box.d-flex.justify-content-end
+                    span
+                      i.fas.fa-glass-cheers = post.liked_users.count
+                    span.ml-2 
+                      i.far.fa-comment-dots = post.comments.count
       = paginate @posts
