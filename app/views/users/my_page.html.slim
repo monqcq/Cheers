@@ -1,9 +1,11 @@
 div.container
   div.row
+    .col-9.offset-3
+      h2.text-center #{ @user.name }の投稿
     = render 'mypage_info', user: @user
 
     div.col-9
-      h2.text-center #{ @user.name }の投稿
+      /h2.text-center #{ @user.name }の投稿
       div.row.row-cols-1.row-cols-md-3.g-4
         - @posts.each do |post|
           = link_to post_path(post) do
