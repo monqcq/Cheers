@@ -28,4 +28,7 @@ class User < ApplicationRecord
     self.likes.exists?(post_id: post.id)
   end
   
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :introduction, length: { maximum: 100 }
+  validates :favorite_alcohol, length: { maximum: 30 }
 end
