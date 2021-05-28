@@ -1,25 +1,10 @@
 .container
   .row
+    .col-9.offset-3
+      h2.text-center #{ @user.name }のCheers!!
     = render 'user_info', user: @user
 
     div.col-md-8.offset-md-1
-      h2 いいね一覧
-      /table.table.table-hover.table-invers.bg-white
-        thead
-          tr
-            th
-            th Title
-            th Opinion
-        tbody
-          - @user.liked_posts.each do |post|
-            tr
-              td
-                = attachment_image_tag post.user, :profile_image, :fill, 30, 30, fallback: "no_image.png", size: '30x30', class:'rounded-circle'
-                = post.user.name
-              td
-                = link_to post.title, post_path(post)
-              td
-                = truncate(post.text, length:30)
       - @user.liked_posts.each do |post|
         .row.bg-white.border.p-2
           .col-6
