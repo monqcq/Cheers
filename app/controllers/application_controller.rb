@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   
   def set_search
     @search = Post.ransack(params[:q])
-    @search_posts = @search.result.published.page(params[:page]).per(9)
+    @search_posts = @search.result.published.order("created_at DESC").page(params[:page]).per(9)
     @search_word = @search.title_or_text_cont
   end
 

@@ -28,3 +28,4 @@ div.container
                 i.fas.fa-glass-cheers = post.liked_users.count
             span.ml-2
               i.far.fa-comment-dots = post.comments.count
+      = paginate @posts

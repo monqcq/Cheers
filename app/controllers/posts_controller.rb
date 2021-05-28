@@ -25,17 +25,16 @@ class PostsController < ApplicationController
   def index
     # パラメーターにcategory_idが渡ってきたらそのIDで投稿を取得
     if params[:category_id]
-      @search_posts = Post.where(category_id: params[:category_id]).published.page(params[:page]).per(9)
+      @search_posts = Post.where(category_id: params[:category_id]).published.order("created_at DESC").page(params[:page]).per(9)
     # パラメーターにscene_idが渡ってきたらそのIDで投稿を取得
     elsif params[:scene_id]
-      @search_posts = Post.where(scene_id: params[:scene_id]).published.page(params[:page]).per(9)
+      @search_posts = Post.where(scene_id: params[:scene_id]).published.order("created_at DESC").page(params[:page]).per(9)
     end
 
     @categories = Category.all
     @scenes = Scene.all
 
     @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
-    # binding.pry
   end
 
   def edit
@@ -64,7 +63,7 @@ class PostsController < ApplicationController
 
   def draft
     @user = current_user
-    @posts = Post.draft.order("created_at DESC")
+    @posts = Post.draft.order("created_at DESC").page(params[:page]).per(6)
   end
 
   private

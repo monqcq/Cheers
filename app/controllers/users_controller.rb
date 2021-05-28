@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def likes
     @user = User.find(params[:id])
+    @liked_posts = @user.liked_posts.page(params[:page]).per(6)
   end
 
   def edit

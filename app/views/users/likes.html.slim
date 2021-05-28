@@ -5,7 +5,7 @@
     = render 'user_info', user: @user
 
     div.col-md-8.offset-md-1
-      - @user.liked_posts.each do |post|
+      - @liked_posts.each do |post|
         .row.bg-white.border.p-2
           .col-6
             p
@@ -16,9 +16,9 @@
           .col-12
             h4 = link_to post.title, post_path(post)
           .col-3
-            p.likes_detail ジャンル【#{ post.category.name }】
+            p.post_detail ジャンル【#{ post.category.name }】
           .col-3
-            p.likes_detail シーン【#{ post.scene.name }】
+            p.post_detail シーン【#{ post.scene.name }】
           .offset-3.col-3.icon-box.d-flex.justify-content-end
             - if current_user.already_liked?(post)
               span
@@ -28,3 +28,4 @@
                 i.fas.fa-glass-cheers = post.liked_users.count
             span.ml-2
               i.far.fa-comment-dots = post.comments.count
+      = paginate @liked_posts
