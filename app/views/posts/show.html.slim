@@ -37,11 +37,11 @@ div.container
 
       /コメント一覧
       h5.border-bottom コメント
-      - if @comments.present?
-        div id="comments_area"
-          = render 'comments/index', comments: @comments
-      - else
-        p この投稿にコメントはありません。
+      div id="comments_area"
+        - if @comments.present?
+            = render 'comments/index', comments: @comments
+        - else
+          p この投稿にコメントはありません。
 
       /コメントフォーム
       = form_with model:[@post, @comment] do |f|
