@@ -10,5 +10,7 @@ class Post < ApplicationRecord
   
   enum status: { draft: 0, published: 1 }
   validates :status, inclusion: { in: Post.statuses.keys }
+  validates :title, presence: true
+  validates :text, presence: true
 
 end

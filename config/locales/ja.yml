@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        title: タイトル
+        text: 本文
+        category: カテゴリー
+        scene: シーン
