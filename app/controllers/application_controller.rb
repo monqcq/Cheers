@@ -4,15 +4,15 @@ class ApplicationController < ActionController::Base
   before_action :set_search
 
   protected
-  
+
   def after_sign_in_path_for(resource)
-    posts_path 
+    posts_path
   end
-  
+
   def after_sign_up_path_for(resource)
-    posts_path 
+    posts_path
   end
-  
+
   def set_search
     @search = Post.ransack(params[:q])
     @search_posts = @search.result.published.order("created_at DESC").page(params[:page]).per(9)
