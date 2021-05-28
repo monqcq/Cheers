@@ -38,7 +38,9 @@ div.container
       /コメント一覧
       h5.border-bottom コメント
       - if @comments.present?
-        - @comments.each do |c|
+        div id="comments_area"
+          = render 'comments/index', comments: @comments
+        /- @comments.each do |c|
           div.row.border-bottom.mb-2
             div.col-1.d-flex.justify-content-end = attachment_image_tag c.user, :profile_image, :fill, 30, 30, fallback: 'no_image.png', size: '30x30'
             div.col-9
