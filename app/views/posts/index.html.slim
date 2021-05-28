@@ -5,6 +5,10 @@ h1.text-center 投稿一覧
 /パラメーターでscene_idが渡ってきたらそのシーンの名前を表示
 - elsif params[:scene_id]
   p.text-center シーン：　【#{ @scenes.find(params[:scene_id]).name }】
+/キーワード検索したらそのキーワードを表示
+- elsif params[:q]
+  p.text-center キーワード：　【#{ @search_word }】
+  
 div.container
   div.row
     div.col-9
