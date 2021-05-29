@@ -17,5 +17,5 @@
         .row.d-flex.justify-content-around.mb-3
           = link_to 'Googleでログイン', '/users/auth/google_oauth2', class:'btn btn-outline-danger', method: :post
           = link_to 'Facebookでログイン', '/users/auth/facebook', class: 'btn btn-outline-primary', method: :post
-        p.text-center 登録済みの方は#{ link_to "こちら", new_user_session_path }からログインしてください。
+        p.text-center 登録済みの方は#{ link_to "こちら", new_user_session_path, class:'text-primary' }からログインしてください。
   

@@ -6,8 +6,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save && @post.status == "draft"
+      redirect_to draft_posts_path
+    elsif @post.save
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -20,17 +25,16 @@ class PostsController < ApplicationController
   def index
     # パラメーターにcategory_idが渡ってきたらそのIDで投稿を取得
     if params[:category_id]
-      @search_posts = Post.where(category_id: params[:category_id]).published
+      @search_posts = Post.where(category_id: params[:category_id]).published.order("created_at DESC").page(params[:page]).per(9)
     # パラメーターにscene_idが渡ってきたらそのIDで投稿を取得
     elsif params[:scene_id]
-      @search_posts = Post.where(scene_id: params[:scene_id]).published
+      @search_posts = Post.where(scene_id: params[:scene_id]).published.order("created_at DESC").page(params[:page]).per(9)
     end
 
     @categories = Category.all
     @scenes = Scene.all
 
     @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
-    # binding.pry
   end
 
   def edit
@@ -44,8 +48,11 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post)
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -56,7 +63,7 @@ class PostsController < ApplicationController
 
   def draft
     @user = current_user
-    @posts = Post.draft.order("created_at DESC")
+    @posts = Post.draft.order("created_at DESC").page(params[:page]).per(6)
   end
 
   private

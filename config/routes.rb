@@ -5,12 +5,15 @@ Rails.application.routes.draw do
              controllers: {
                sessions: 'users/sessions',
                registrations: 'users/registrations',
-               omniauth_callbacks: 'users/omniauth_callbacks'
+               omniauth_callbacks: 'users/omniauth_callbacks',
              }
   resources :users, only: [:show, :edit, :update] do
     # 以下、IDを持たせないためcollection
     collection do
       get 'my_page'
+    end
+
+    member do
       get 'likes'
     end
   end
@@ -18,7 +21,7 @@ Rails.application.routes.draw do
   resources :posts do
     collection do
       get 'draft'
-  end
+    end
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end

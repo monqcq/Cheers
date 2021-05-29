@@ -4,15 +4,17 @@ class UsersController < ApplicationController
     if @user == current_user
       redirect_to my_page_users_path
     end
-    @posts = Post.where(user_id: params[:id])
+    @posts = Post.where(user_id: params[:id]).page(params[:page]).per(9)
   end
 
   def my_page
     @user = current_user
+    @posts = @user.posts.published.all.page(params[:page]).per(9)
   end
-  
+
   def likes
-    @user = current_user
+    @user = User.find(params[:id])
+    @liked_posts = @user.liked_posts.page(params[:page]).per(6)
   end
 
   def edit
@@ -21,8 +23,11 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to my_page_users_path
+    if @user.update(user_params)
+      redirect_to my_page_users_path
+    else
+      render :edit
+    end
   end
 
   private

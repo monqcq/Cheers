@@ -1,21 +1,31 @@
 div.container
   div.row
-    = render 'users/mypage_info', user: @user
+    .col-9.offset-3
+      h2.text-center 下書き中の投稿
+    = render 'users/user_info', user: @user
 
     div.col-md-8.offset-md-1
-      h2 下書き一覧
-      table.table.table-hover.table-invers.bg-white
-        thead
-          tr
-            th
-            th Title
-            th Opinion
-        tbody
-          - @posts.each do |post|
-            tr
-              td
-                = attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "no_image.png", size: '30x30', class:'rounded-circle'
-              td
-                = link_to post.title, edit_post_path(post)
-              td
-                = truncate(post.text, length:30)
+      - @posts.each do |post|
+        .row.bg-white.border.p-2
+          .col-6
+            p
+              = attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "no_image.png", size: '30x30', class:'rounded-circle'
+              = post.user.name
+          .col-6
+            p.text-right = post.created_at.strftime("%Y-%m-%d %H:%M")
+          .col-12
+            h4 = link_to post.title, post_path(post)
+          .col-3
+            p.post_detail ジャンル【#{ post.category.name }】
+          .col-3
+            p.post_detail シーン【#{ post.scene.name }】
+          .offset-3.col-3.icon-box.d-flex.justify-content-end
+            - if current_user.already_liked?(post)
+              span
+                i.fas.fa-glass-cheers.text-warning = post.liked_users.count
+            - else
+              span
+                i.fas.fa-glass-cheers = post.liked_users.count
+            span.ml-2
+              i.far.fa-comment-dots = post.comments.count
+      = paginate @posts

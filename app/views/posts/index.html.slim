@@ -1,10 +1,14 @@
-h1 投稿一覧
+h1.text-center 投稿一覧
 /パラメーターでcategory_idが渡ってきたらそのカテゴリーの名前を表示
 - if params[:category_id]
-  p ジャンル： 【#{ @categories.find(params[:category_id]).name }】
+  p.text-center ジャンル： 【#{ @categories.find(params[:category_id]).name }】
 /パラメーターでscene_idが渡ってきたらそのシーンの名前を表示
 - elsif params[:scene_id]
-  p シーン：　【#{ @scenes.find(params[:scene_id]).name }】
+  p.text-center シーン：　【#{ @scenes.find(params[:scene_id]).name }】
+/キーワード検索したらそのキーワードを表示
+- elsif params[:q]
+  p.text-center キーワード：　【#{ @search_word }】
+
 div.container
   div.row
     div.col-9
@@ -16,25 +20,42 @@ div.container
                 = attachment_image_tag post, :image, fallback: 'no_image_post.png', class: 'card-img-top p-2', size: '300x225'
                 div.card-body
                   h5.card-title = post.title
+                  h6.card-subtitle.mb-2.text-muted.d-flex.justify-content-between
+                    p.mb-0
+                      = attachment_image_tag post.user, :profile_image, :fill, 15, 15, fallback: "no_image.png", size: '15x15', class:'rounded-circle'
+                      = post.user.name
+                    p.mb-0 = post.created_at.strftime("%Y-%m-%d %H:%M")
                   p.card-text = truncate(post.text, length:30)
-                  
+                  div.icon-box.d-flex.justify-content-end
+                    - if current_user.already_liked?(post)
+                      span
+                        i.fas.fa-glass-cheers.text-warning = post.liked_users.count
+                    - else
+                      span
+                        i.fas.fa-glass-cheers = post.liked_users.count
+                    span.ml-2
+                      i.far.fa-comment-dots = post.comments.count
+      = paginate @search_posts
+
     div.col-3.rounded-lg
-      h5.mt-2.bg-white.rounded.text-center ジャンル別で探す
-      - @categories.each do |category|
-        p
-          /パラメーターでcategory_idを渡す
-          = link_to category.name, posts_path(category_id: category), class:'text-secondary'
-          
-      h5.mt-2.bg-white.rounded.text-center シーン別で探す
-      - @scenes.each do |scene|
-        p
-          /パラメーターでscene_idを渡す
-          = link_to scene.name, posts_path(scene_id: scene), class:'text-secondary'
-          
-      h5.mt-2.bg-white.rounded.text-center ランキング
-      - @all_ranks.each.with_index(1) do |rank, i|
-        .row.d-flex.justify-content-center
-          p.col-1.d-flex.align-items-center.justify-content-center #{ i }
-          p.col-6.d-flex.align-items-center.justify-content-center = link_to rank.title, post_path(rank), class:'text-secondary'
-          p.col-4.d-flex.align-items-center.text-center #{rank.liked_users.count} <br> cheers!!
+      .category_box.bg-white.p-1.mb-4.rounded
+        h5.mt-2.bg-white.rounded.text-center ジャンル別で探す
+        - @categories.each do |category|
+          p
+            /パラメーターでcategory_idを渡す
+            = link_to category.name, posts_path(category_id: category)
+      .scene_box.bg-white.p-1.mb-4.rounded
+        h5.mt-2.bg-white.rounded.text-center シーン別で探す
+        - @scenes.each do |scene|
+          p
+            /パラメーターでscene_idを渡す
+            = link_to scene.name, posts_path(scene_id: scene)
+      .ranking_box.bg-white.p-1.mb-4.rounded
+        h5.mt-2.bg-white.rounded.text-center ランキング
+        - @all_ranks.each.with_index(1) do |rank, i|
+          .row.d-flex.justify-content-center
+            p.col-1.d-flex.align-items-center.justify-content-center #{ i }
+            p.col-6.d-flex.align-items-center.justify-content-center = link_to rank.title, post_path(rank)
+            p.col-4.d-flex.align-items-center.text-center 
+              strong  #{rank.liked_users.count} <br>cheers!!
 

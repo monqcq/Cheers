@@ -1,7 +1,7 @@
-h1 投稿を編集する
 div.container
   div.row
     = form_with model:@post, local:true do |f| 
+      = render 'layouts/error_message', model: f.object
       div.form-group
         label for= 'post_title' タイトル
         = f.text_field :title, class: 'form-control post_title', id: 'post_title'
@@ -11,6 +11,13 @@ div.container
       div.form-group
         label for= 'post_image' 投稿画像を変更する
         = f.attachment_field :image, placeholder: '画像をアップロードする', class: 'form-control-file post_image', id: 'post_image'
+      div.form-row
+        div.form-group.col-2
+          = f.label :category_id, 'カテゴリー'
+          = f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control'
+        div.form-group.col-2
+          = f.label :scene_id, 'シーン'
+          = f.collection_select :scene_id, Scene.all, :id, :name, { prompt: '選択してください' }, class: 'form-control'
       div.form-group
         = f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, class:'form-control'
       div.form-group
