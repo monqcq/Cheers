@@ -8,7 +8,7 @@ h1.text-center 投稿一覧
 /キーワード検索したらそのキーワードを表示
 - elsif params[:q]
   p.text-center キーワード：　【#{ @search_word }】
-  
+
 div.container
   div.row
     div.col-9
@@ -38,22 +38,24 @@ div.container
       = paginate @search_posts
 
     div.col-3.rounded-lg
-      h5.mt-2.bg-white.rounded.text-center ジャンル別で探す
-      - @categories.each do |category|
-        p
-          /パラメーターでcategory_idを渡す
-          = link_to category.name, posts_path(category_id: category), class:'text-secondary'
-
-      h5.mt-2.bg-white.rounded.text-center シーン別で探す
-      - @scenes.each do |scene|
-        p
-          /パラメーターでscene_idを渡す
-          = link_to scene.name, posts_path(scene_id: scene), class:'text-secondary'
-
-      h5.mt-2.bg-white.rounded.text-center ランキング
-      - @all_ranks.each.with_index(1) do |rank, i|
-        .row.d-flex.justify-content-center
-          p.col-1.d-flex.align-items-center.justify-content-center #{ i }
-          p.col-6.d-flex.align-items-center.justify-content-center = link_to rank.title, post_path(rank), class:'text-secondary'
-          p.col-4.d-flex.align-items-center.text-center #{rank.liked_users.count} <br> cheers!!
+      .category_box.bg-white.p-1.mb-4.rounded
+        h5.mt-2.bg-white.rounded.text-center ジャンル別で探す
+        - @categories.each do |category|
+          p
+            /パラメーターでcategory_idを渡す
+            = link_to category.name, posts_path(category_id: category)
+      .scene_box.bg-white.p-1.mb-4.rounded
+        h5.mt-2.bg-white.rounded.text-center シーン別で探す
+        - @scenes.each do |scene|
+          p
+            /パラメーターでscene_idを渡す
+            = link_to scene.name, posts_path(scene_id: scene)
+      .ranking_box.bg-white.p-1.mb-4.rounded
+        h5.mt-2.bg-white.rounded.text-center ランキング
+        - @all_ranks.each.with_index(1) do |rank, i|
+          .row.d-flex.justify-content-center
+            p.col-1.d-flex.align-items-center.justify-content-center #{ i }
+            p.col-6.d-flex.align-items-center.justify-content-center = link_to rank.title, post_path(rank)
+            p.col-4.d-flex.align-items-center.text-center 
+              strong  #{rank.liked_users.count} <br>cheers!!
 
