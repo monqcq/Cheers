@@ -16,12 +16,13 @@ Rails.application.routes.draw do
     member do
       get 'likes'
     end
-  end
-
-  resources :posts do
+    
     collection do
       get 'draft'
     end
+  end
+
+  resources :posts do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
