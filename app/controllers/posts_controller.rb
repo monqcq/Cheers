@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save && @post.status == "draft"
-      redirect_to draft_posts_path
+      redirect_to draft_users_path
     elsif @post.save
       redirect_to posts_path
     else
@@ -61,11 +61,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def draft
-    @user = current_user
-    @posts = Post.draft.order("created_at DESC").page(params[:page]).per(6)
-  end
-
+  
   private
 
   def post_params
