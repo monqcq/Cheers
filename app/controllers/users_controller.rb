@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @liked_posts = @user.liked_posts.page(params[:page]).per(6)
   end
+  
+  def draft
+    @user = current_user
+    @posts = @user.posts.draft.order("created_at DESC").page(params[:page]).per(6)
+  end
 
   def edit
     @user = current_user
