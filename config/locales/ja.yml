@@ -2,11 +2,10 @@ ja:
   activerecord:
     attributes:
       post:
-        title: タイトル
+        title:  タイトル
         text: 本文
         category: カテゴリー
-        scene: シーン
-ja:
+        scene:  シーン
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>
