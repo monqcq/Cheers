@@ -10,7 +10,7 @@
           .col-6
             p
               = attachment_image_tag post.user, :profile_image, :fill, 30, 30, fallback: "no_image.png", size: '30x30', class:'rounded-circle'
-              = post.user.name
+              = link_to post.user.name, user_path(post.user)
           .col-6
             p.text-right = post.created_at.strftime("%Y-%m-%d %H:%M")
           .col-12
