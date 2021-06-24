@@ -15,8 +15,8 @@ div.col-md-3.bg-white.rounded-lg.h-50
     div.row.mb-3
       = link_to "#{ user.name }さんのCheers!!(#{user.liked_posts.count})", likes_user_path(user), class:'col-10 mx-auto btn btn-outline-warning'
     div.row.mb-3
-      = link_to "#{ user.name }さんの投稿(#{user.posts.count})", user_path(user), class:'col-10 mx-auto btn btn-outline-dark'
-  - if user == current_user 
+      = link_to "#{ user.name }さんの投稿(#{user.posts.published.count})", user_path(user), class:'col-10 mx-auto btn btn-outline-dark'
+  - if user == current_user
     div.row.mb-3
       = link_to "下書き中の投稿(#{user.posts.draft.count})", draft_users_path, class:'col-10 mx-auto btn btn-outline-primary'
     div.row.mb-5
